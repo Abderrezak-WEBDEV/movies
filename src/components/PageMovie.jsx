@@ -3,9 +3,8 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 // pour faciliter , j'utilise la librairie react-pagination
 const PageMovie = ({getPage}) => {
-    console.log(getPage.selected + 1)
+  
     const handlePageClick =(data)=>{
-        console.log(data.selected + 1)
          getPage(data.selected + 1)
     } 
     const pageCount = 500;

@@ -4,6 +4,11 @@ import './App.css';
 import {Container} from "react-bootstrap"
 import Content from './components/Content';
 import axios from 'axios';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+// le but de ce component est de voir le detail de chaque ffilm au click
+import MovieDetail from './components/MovieDetail';
+import Footer from './components/Footer';
+import Home from './components/Home';
 function App() {
   // importer les données de TMDB , les movies avec url et axios en forma json
   const [movies, setMovies] = useState([]);
@@ -37,13 +42,20 @@ const showMoviePage =async(page)=> {
   return (
     <div className="App">
       <Navba search = {searchTitle}/>
+
       <Container>
-         <Content data = {movies} showPage= {showMoviePage}/>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element= {<Home/>}/>
+            <Route path='/content' element = {<Content data = {movies} showPage= {showMoviePage}/>}></Route> 
+            <Route path='/mov/:id'element={<MovieDetail/>}></Route>
+          </Routes>
+         </BrowserRouter>
       </Container>
+      <Footer/>
     </div>
   );
 }
-
 export default App;
 
 
